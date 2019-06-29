@@ -4,6 +4,7 @@ var blinkstick = require('../../blinkstick'),
 if (device) {
   var finished = false;
 
+
   device.pulse('red', function() {
     device.pulse('green', function() {
       device.pulse('blue', function() {

@@ -1,19 +1,43 @@
-var blinkstick = require('../../blinkstick'),
-  device = blinkstick.findFirst();
+const blinkstick = require('../../blinkstick');
 
-if (device) {
-  var finished = false;
-
-  device.morph('red', function() {
-    device.morph('green', function() {
-      device.morph('blue', function() {
-        finished = true;
-      });
-    });
-  });
-
-  var wait = function() {
-    if (!finished) setTimeout(wait, 100);
-  };
-  wait();
+function duration(millis) {
+  return new Promise((resolve) => setTimeout(resolve, millis));
 }
+
+async function main(device) {
+  await device.setColor('random');
+  await duration(250);
+  await device.setColor('random');
+  await duration(250);
+  await device.setColor('random');
+  await duration(250);
+  await device.setColor('random');
+  await duration(250);
+  await device.setColor('random');
+  await duration(250);
+  await device.setColor('random');
+  await duration(250);
+  await device.setColor('random');
+  await duration(250);
+  await device.setColor('random');
+  await duration(250);
+  await device.setColor('random');
+  await duration(250);
+  await device.setColor('random');
+  await duration(250);
+  await device.setColor('random');
+  await duration(250);
+  await device.setColor('random');
+  await duration(250);
+  await device.setColor(0, 0, 0);
+  await device.close();
+}
+
+main(blinkstick.findFirst())
+  .then(() => {
+    process.exit(0);
+  })
+  .catch((e) => {
+    console.error(e);
+    process.exit(1);
+  });
